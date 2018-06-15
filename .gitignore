@@ -1,0 +1,18 @@
+# dependencies
+/node_modules
+
+# production
+/dist
+
+# misc
+.DS_Store
+npm-debug.log*
+
+# VSCode
+.vscode
+tsconfig.json
+jsconfig.json
+bundles/
+package-lock.json
+
+*._*
