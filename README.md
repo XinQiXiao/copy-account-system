@@ -14,3 +14,7 @@
 	tag v0.1.0 创建应用 建立
 		1.创建项目，安装依赖，配置环境；
 		2.HomePage框架建立，IndexPage 完成
+
+		tag v0.1.1 
+			1.HomePage Header（即 nav）搭建
+				1.1 customer create

@@ -7,3 +7,12 @@
 	background: #404040;
 	overflow: scroll;
 }
+
+.menuList {
+	margin-top: 60px;
+	border: none;
+}
+
+.link {
+	color: #000;
+}
