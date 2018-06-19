@@ -6,7 +6,7 @@ import styles from './index.css'
 // config
 import { contantsConfig } from '../../config'
 
-const IndexPage = ({})=>{
+const IndexPage = ()=>{
 	return (
 		<div className={styles.normal}>
 			<h1>{contantsConfig.SYSTEM_NAME+'首页'}</h1>
