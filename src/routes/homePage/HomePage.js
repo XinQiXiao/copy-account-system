@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import { Header } from '../../components'
+import { Header, SystemInfo } from '../../components'
 
 import styles from './index.css'
 
@@ -10,6 +10,7 @@ const HomePage = ({children})=>{
 	return (
 		<div className={styles.homePage}>
 			<Header />
+			<SystemInfo />
 			<div className={styles.container} style={{height}}>
 				{children}
 			</div>
