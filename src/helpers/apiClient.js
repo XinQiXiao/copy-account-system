@@ -41,7 +41,7 @@ class ApiClient {
 					error.response = response
 					throw error
 				}).then((receive) => {
-					// console.log('receive json=>', receive)
+					console.log('receive json=>', receive)
 					if(_.isNil(receive)){
 						reject(new Error('receive is nil'))
 					} else {

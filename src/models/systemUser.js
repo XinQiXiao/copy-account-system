@@ -40,7 +40,8 @@ export default {
 			return { ...state, logupModalVisible: true }
 		},
 		logupSuccess(state, action){
-			return { ...state, logupModalVisible: false }
+			let userInfo = action.payload
+			return { ...state, ...userInfo, isLogin: true, logupModalVisible: false }
 		},
 		hideLogupModal(state){
 			return { ...state, logupModalVisible: false }

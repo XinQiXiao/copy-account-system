@@ -16,13 +16,6 @@ class SystemInfo extends Component{
 	constructor(props){
 		super(props)
 
-		this.state = {
-			isLogin: false,
-			username: '',
-			password: '',
-			showLoginModal: false,
-		}
-
 		this._loginClick = this._loginClick.bind(this)
 		this._logupClick = this._logupClick.bind(this)
 		this._loginModalConfirm = this._loginModalConfirm.bind(this)
@@ -32,29 +25,13 @@ class SystemInfo extends Component{
 	}
 
 	_loginClick(){
-		const {isLogin} = this.state
-		if(!isLogin){
-			this.setState({
-				showLoginModal: true,
-			})
-			return
-		}
-		this.setState({
-			isLogin: false
-		})
+		
 	}
-	_loginModalConfirm(info){
-		this.setState({
-			isLogin: true,
-			showLoginModal: false,
-			username: (info && info.username) ? info.username : '',
-			password: (info && info.password) ? info.password : ''
-		})
+	_loginModalConfirm(userData){
+		
 	}
 	_loginModalCancel(){
-		this.setState({
-			showLoginModal: false
-		})
+		
 	}
 
 	_logupClick(){
@@ -87,8 +64,8 @@ class SystemInfo extends Component{
 	}
 
 	render(){
-		const {isLogin, username, showLoginModal} = this.state
-		const { logupModalVisible } = this.props.systemUser
+		const { loginModalVisible, logupModalVisible, isLogin, username } = this.props
+		console.log('props=>', this.props)
 		return (
 			<div className={styles.systemInfo}>
 				<span className={styles.systemName}>{contantsConfig.SYSTEM_NAME}</span>
@@ -96,7 +73,7 @@ class SystemInfo extends Component{
 					showRegister={!isLogin ? true : false}
 					loginClick={this._loginClick} logupClick={this._logupClick}
 				/> 
-				<LoginModal visible={showLoginModal} 
+				<LoginModal visible={loginModalVisible} 
 					onConfirm={this._loginModalConfirm} onCancel={this._loginModalCancel}
 				/>
 				<LogupModal visible={logupModalVisible}
@@ -108,7 +85,12 @@ class SystemInfo extends Component{
 }
 
 function mapStateToProps({systemUser}){
-	return {systemUser}
+	return {
+		isLogin: systemUser.isLogin,
+		username: systemUser.username,
+		loginModalVisible: systemUser.loginModalVisible,
+		logupModalVisible: systemUser.logupModalVisible,
+	}
 }
 
 export default connect(mapStateToProps)(SystemInfo)
