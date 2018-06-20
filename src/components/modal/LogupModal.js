@@ -1,5 +1,5 @@
 /**
- * create at 06/19/18
+ * create at 06/20/18
  */
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
@@ -12,12 +12,14 @@ const formItemLayout = {
 	wrapperCol: { span: 14}
 }
 
-class LoginModal extends Component{
+class LogupModal extends Component{
 	constructor(props){
 		super(props)
 
 		this._handleConfirm = this._handleConfirm.bind(this)
 		this._handleKeyDown = this._handleKeyDown.bind(this)
+		this._checkPass = this._checkPass.bind(this)
+		this._checkConfirmPass = this._checkConfirmPass.bind(this)
 	}
 
 	_handleConfirm(){
@@ -39,17 +41,40 @@ class LoginModal extends Component{
 		}
 	}
 
+	_checkPass(rule, value, callback){
+		if(value){
+			if(value.length < 6){
+				return callback('密码长度不能小于6位！')
+			}
+			if(!/^([\d]+[a-zA-Z]+)|([a-zA-Z]+[\d]+)$/.test(value)){
+				return callback('密码必须由数字和字母组成！')
+			}
+			callback()
+		} else {
+			callback()
+		}
+	}
+
+	_checkConfirmPass(rule, value, callback){
+		const {getFieldsValue} = this.props.form
+		const {password = ''} = getFieldsValue()
+		if(value && value !== password){
+			return callback('确认两次输入密码一致！')
+		}
+		callback()
+	}
+
 	render(){
 		const {visible, onCancel} = this.props
 		const {getFieldDecorator} = this.props.form
 		return (
-			<Modal title='系统用户登录' visible={visible} onOk={this._handleConfirm}
+			<Modal title='系统用户注册' visible={visible} onOk={this._handleConfirm}
 				onCancel={onCancel}
 			>
 				<Form layout='horizontal'>
 					<FormItem label='用户名：' hasFeedback {...formItemLayout}>
 						{
-							getFieldDecorator('userName', {
+							getFieldDecorator('username', {
 								rules: [
 									{
 										required: true,
@@ -68,6 +93,26 @@ class LoginModal extends Component{
 									{
 										required: true,
 										message: '请输入密码！'
+									},
+									{
+										validator: this._checkPass
+									}
+								]
+							})(
+								<Input type='password' onKeyDown={this._handleKeyDown}/>
+							)
+						}
+					</FormItem>
+					<FormItem label='确认密码：' hasFeedback {...formItemLayout}>
+						{
+							getFieldDecorator('confirmPassword', {
+								rules: [
+									{
+										required: true,
+										message: '请重新输入密码！'
+									},
+									{
+										validator: this._checkConfirmPass
 									}
 								]
 							})(
@@ -81,11 +126,11 @@ class LoginModal extends Component{
 	}
 }
 
-LoginModal.propTypes = {
+LogupModal.propTypes = {
 	visible: PropTypes.bool,
 	onConfirm: PropTypes.func,
 	onCancel: PropTypes.func,
 	form: PropTypes.object.isRequired,
 }
 
-export default Form.create()(LoginModal)
+export default Form.create()(LogupModal)

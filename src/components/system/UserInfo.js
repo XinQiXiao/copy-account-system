@@ -10,11 +10,11 @@ import styles from './index.css'
 class UserInfoComponent extends Component{
 	render(){
 		const {
-			isLogin, userName, showRegister, loginClick, logupClick
+			isLogin, username, showRegister, loginClick, logupClick
 		} = this.props
 		return (
 			<span className={styles.userInfo}>
-				{showUserName(isLogin, userName)}
+				{showUserName(isLogin, username)}
 				<Button type='primary' className={styles.loginButton} onClick={loginClick}>
 					{isLogin ? '退出' : '登录'}
 				</Button>

@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
-import { Modal } from 'antd'
+import { browserHistory } from 'dva/router'
 
 // components
 import { UserInfoComponent } from './UserInfo'
-import { LoginModal } from '../modal'
+import { LoginModal, LogupModal } from '../modal'
 
 // style
 import styles from './index.css'
@@ -18,15 +18,17 @@ class SystemInfo extends Component{
 
 		this.state = {
 			isLogin: false,
-			userName: '',
+			username: '',
 			password: '',
-			showLoginModal: false
+			showLoginModal: false,
 		}
 
 		this._loginClick = this._loginClick.bind(this)
 		this._logupClick = this._logupClick.bind(this)
 		this._loginModalConfirm = this._loginModalConfirm.bind(this)
 		this._loginModalCancel = this._loginModalCancel.bind(this)
+		this._logupModalConfirm = this._logupModalConfirm.bind(this)
+		this._logupModalCancel = this._logupModalCancel.bind(this)
 	}
 
 	_loginClick(){
@@ -45,7 +47,7 @@ class SystemInfo extends Component{
 		this.setState({
 			isLogin: true,
 			showLoginModal: false,
-			userName: (info && info.userName) ? info.userName : '',
+			username: (info && info.username) ? info.username : '',
 			password: (info && info.password) ? info.password : ''
 		})
 	}
@@ -56,27 +58,57 @@ class SystemInfo extends Component{
 	}
 
 	_logupClick(){
-		Modal.warning({
-			title: '提示',
-			content: <p style={{fontSize: 14}}>注册功能正在开发</p>
+		const { dispatch } = this.props
+		dispatch({
+			type: 'systemUser/logup'
+		})
+		browserHistory.push('/')
+	}
+	_logupModalConfirm(userData){
+		const {dispatch} = this.props
+		new Promise((resolve, reject)=>{
+			dispatch({
+				type: 'systemUser/doLogup',
+				payload: {
+					userData,
+					resolve, 
+					reject
+				}
+			})
+		}).catch((e)=>{
+			console.log('_logupModalConfirm e=>', e)
+		})
+	}
+	_logupModalCancel(){
+		const { dispatch } = this.props
+		dispatch({
+			type: 'systemUser/hideLogupModal'
 		})
 	}
 
 	render(){
-		const {isLogin, userName, showLoginModal} = this.state
+		const {isLogin, username, showLoginModal} = this.state
+		const { logupModalVisible } = this.props.systemUser
 		return (
 			<div className={styles.systemInfo}>
 				<span className={styles.systemName}>{contantsConfig.SYSTEM_NAME}</span>
-				<UserInfoComponent isLogin={isLogin} userName={userName}
+				<UserInfoComponent isLogin={isLogin} username={username}
 					showRegister={!isLogin ? true : false}
 					loginClick={this._loginClick} logupClick={this._logupClick}
 				/> 
 				<LoginModal visible={showLoginModal} 
 					onConfirm={this._loginModalConfirm} onCancel={this._loginModalCancel}
 				/>
+				<LogupModal visible={logupModalVisible}
+					onConfirm={this._logupModalConfirm} onCancel={this._logupModalCancel}
+				/>
 			</div>
 		)
 	}
 }
 
-export default connect()(SystemInfo)
+function mapStateToProps({systemUser}){
+	return {systemUser}
+}
+
+export default connect(mapStateToProps)(SystemInfo)

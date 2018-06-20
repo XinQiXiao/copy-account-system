@@ -9,6 +9,9 @@ import { browserHistory } from 'dva/router'
 // router
 import router from './router'
 
+// models
+import { systemUser } from './models'
+
 
 // 1. Initialize
 const app = dva({
@@ -19,7 +22,7 @@ const app = dva({
 // app.use({})
 
 // 3. Modal
-// app.model()
+app.model(systemUser)
 
 // 4. Router
 app.router(router)

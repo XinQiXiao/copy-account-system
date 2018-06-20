@@ -22,3 +22,9 @@
 		tag v0.1.1 
 			1.HomePage Header（即 nav）搭建
 			2.HomePage SystemInfo 
+		
+	tag v0.2.0
+		1.model 框架建立并测试
+		2.apiClient 集成 并测试
+		3.presenter 集成 并测试
+		4.module request 功能集成
