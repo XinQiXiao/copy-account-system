@@ -10,30 +10,31 @@ function formatUrl(path){
 	return 'http://' + apiHost + ':' + apiPort + adjustedPath
 }
 
-function toQueryString(obj){
-	return obj ? Object.keys(obj).sort().map(key => {
-		let val = obj[key]
-		if(_.isArray(val)){
-			return val.sort().map(val2 => {
-				return key + '=' + val2
-			}).join('&')
-		}
-		return key + '=' + val
-	}).join('&') : ''
-}
+// function toQueryString(obj){
+// 	return obj ? Object.keys(obj).sort().map(key => {
+// 		let val = obj[key]
+// 		if(_.isArray(val)){
+// 			return val.sort().map(val2 => {
+// 				return key + '=' + val2
+// 			}).join('&')
+// 		}
+// 		return key + '=' + val
+// 	}).join('&') : ''
+// }
 
 class ApiClient {
 	constructor(req){
 		methods.forEach((method) => {
 			this[method] = (path, {params, data}) => new Promise((resolve, reject) => {
-				path = formatUrl(path) + toQueryString(params)
+				// path = formatUrl(path) + toQueryString(params)
+				path = formatUrl(path)
 				console.log(path + ' request data =>', data)
 				fetch(path, {
 					method,
 					...apiHeaderOptions,
 					body: JSON.stringify(data || {}),
 				}).then((response)=>{ 
-					// console.log('response json before=>', response)
+					console.log('response json before=>', response)
 					if(response.status >= 200 && response.status < 300){
 						return response.json()
 					}
