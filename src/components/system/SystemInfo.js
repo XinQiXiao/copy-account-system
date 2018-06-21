@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
 import { browserHistory } from 'dva/router'
+import { Modal } from 'antd'
+import _ from 'lodash'
 
 // components
 import { UserInfoComponent } from './UserInfo'
@@ -53,7 +55,13 @@ class SystemInfo extends Component{
 				}
 			})
 		}).catch((e)=>{
-			console.log('_logupModalConfirm e=>', e)
+			if(!_.isNil(e) && e.code === 3){
+				Modal.error({
+					title: '提示',
+					content: <p style={{fontSize: 14}}>该用户已存在！</p>
+				})
+
+			}
 		})
 	}
 	_logupModalCancel(){
