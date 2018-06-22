@@ -28,3 +28,7 @@
 		2.apiClient 集成 并测试
 		3.presenter 集成 并测试
 		4.module request 功能集成
+
+		tag v0.2.1
+			login logup logout 功能完成
+			subscriptions 监听 path 变化，更新 login 信息

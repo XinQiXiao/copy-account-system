@@ -49,7 +49,7 @@ class LoginModal extends Component{
 				<Form layout='horizontal'>
 					<FormItem label='用户名：' hasFeedback {...formItemLayout}>
 						{
-							getFieldDecorator('userName', {
+							getFieldDecorator('username', {
 								rules: [
 									{
 										required: true,

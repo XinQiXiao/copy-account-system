@@ -27,13 +27,39 @@ class SystemInfo extends Component{
 	}
 
 	_loginClick(){
-		
+		const { dispatch, isLogin } = this.props
+		dispatch({
+			type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'
+		})
+		browserHistory.push('/')
 	}
 	_loginModalConfirm(userData){
-		
+		const { dispatch } = this.props
+		new Promise((resolve, reject)=>{
+			dispatch({
+				type: 'systemUser/doLogin',
+				payload: {userData, resolve, reject}
+			})
+		}).catch(e=>{
+			if(e && e.code === 1){
+				Modal.error({
+					title: '提示',
+					content: <p style={{fontSize: 14}}>该用户不存在！</p>
+				})
+			} 
+			if(e && e.code === 2){
+				Modal.error({
+					title: '提示',
+					content: <p style={{fontSize: 14}}>密码错误！</p>
+				})
+			}
+		})
 	}
 	_loginModalCancel(){
-		
+		const { dispatch } = this.props
+		dispatch({
+			type: 'systemUser/hideLoginModal'
+		})
 	}
 
 	_logupClick(){
@@ -49,9 +75,7 @@ class SystemInfo extends Component{
 			dispatch({
 				type: 'systemUser/doLogup',
 				payload: {
-					userData,
-					resolve, 
-					reject
+					userData, resolve, reject
 				}
 			})
 		}).catch((e)=>{
@@ -60,7 +84,6 @@ class SystemInfo extends Component{
 					title: '提示',
 					content: <p style={{fontSize: 14}}>该用户已存在！</p>
 				})
-
 			}
 		})
 	}
