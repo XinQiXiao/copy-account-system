@@ -96,7 +96,6 @@ class SystemInfo extends Component{
 
 	render(){
 		const { loginModalVisible, logupModalVisible, isLogin, username } = this.props
-		console.log('props=>', this.props)
 		return (
 			<div className={styles.systemInfo}>
 				<span className={styles.systemName}>{contantsConfig.SYSTEM_NAME}</span>

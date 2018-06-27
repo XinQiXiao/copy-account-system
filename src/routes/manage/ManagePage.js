@@ -1,6 +1,17 @@
 import React, { Component } from 'react'
+import { connect } from 'dva'
+
+import { webSessionUtil } from '../../utils'
 
 class ManagePage extends Component{
+	UNSAFE_componentWillMount(){
+		const {isLogin = false} = this.props
+		console.log('ManagePage props===>', this.props)
+		if(!isLogin){
+			webSessionUtil.redirect()
+		}
+	}
+
 	render(){
 		const { children } = this.props
 		return (
@@ -11,4 +22,10 @@ class ManagePage extends Component{
 	}
 }
 
-export default ManagePage
+function mapStateToProps({systemUser}){
+	return {
+		isLogin: systemUser.isLogin
+	}
+}
+
+export default connect(mapStateToProps)(ManagePage)

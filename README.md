@@ -32,3 +32,6 @@
 		tag v0.2.1
 			login logup logout 功能完成
 			subscriptions 监听 path 变化，更新 login 信息
+		
+		tag v0.2.2
+			util webSession 建立

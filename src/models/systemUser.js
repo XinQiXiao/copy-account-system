@@ -1,10 +1,10 @@
 import { userPresenter } from '../presenters'
 import _ from 'lodash'
 
-const { logupRequest, loginRequest, logoutRequest } = userPresenter
+import { contantsConfig } from '../config'
 
-// const 
-const UESRINFO_KEY = 'userInfo'
+const { logupRequest, loginRequest, logoutRequest } = userPresenter
+const { STORAGE_USERINFO } = contantsConfig
 
 export default {
 
@@ -25,7 +25,7 @@ export default {
 				console.log('subscriptions location==>', location)
 				if(location.pathname === '/'){
 					// 权限验证通过
-					const info = sessionStorage.getItem(UESRINFO_KEY)
+					const info = sessionStorage.getItem(STORAGE_USERINFO)
 					console.log('session userInfo=>', info)
 					if(!_.isNil(info)){
 						dispatch({
@@ -46,7 +46,7 @@ export default {
 				const {data} = yield call(loginRequest, userData)
 				if(data && data.success){
 					let userInfo = data.userInfo
-					yield sessionStorage.setItem(UESRINFO_KEY, JSON.stringify(userInfo))
+					yield sessionStorage.setItem(STORAGE_USERINFO, JSON.stringify(userInfo))
 					// 登录成功
 					yield put({
 						type: 'loginSuccess',
@@ -67,7 +67,7 @@ export default {
 				const {data} = yield call(logupRequest, userData)
 				if(data && data.success){
 					let userInfo = data.userInfo
-					yield sessionStorage.setItem(UESRINFO_KEY, JSON.stringify(userInfo))
+					yield sessionStorage.setItem(STORAGE_USERINFO, JSON.stringify(userInfo))
 					yield put({
 						type: 'logupSuccess',
 						payload: userInfo
@@ -84,7 +84,7 @@ export default {
 			try{
 				const { data } = yield call(logoutRequest)
 				if(data && data.success){
-					yield sessionStorage.removeItem(UESRINFO_KEY)
+					yield sessionStorage.removeItem(STORAGE_USERINFO)
 					yield put({
 						type: 'logoutSuccess'
 					})
