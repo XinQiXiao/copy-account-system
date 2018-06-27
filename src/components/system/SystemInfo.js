@@ -31,6 +31,7 @@ class SystemInfo extends Component{
 		dispatch({
 			type: isLogin ? 'systemUser/doLogout' : 'systemUser/login'
 		})
+		console.log('_loginClick isLogin==>', isLogin)
 		browserHistory.push('/')
 	}
 	_loginModalConfirm(userData){

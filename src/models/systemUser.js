@@ -26,7 +26,7 @@ export default {
 				if(location.pathname === '/'){
 					// 权限验证通过
 					const info = sessionStorage.getItem(STORAGE_USERINFO)
-					console.log('session userInfo=>', info)
+					console.log('systemUser Model subscriptions session userInfo=>', info)
 					if(!_.isNil(info)){
 						dispatch({
 							type: 'loginSuccess',

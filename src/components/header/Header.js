@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
-import { Link } from 'dva/router'
+
+// components
+import NavLink from '../navLink/NavLink.js'
 
 // style
 import styles from './index.css'
@@ -22,7 +24,7 @@ const menus = [
 	{key: 'index', path: '/', text: '首页', icon: 'home'},
 	{key: 'order', path: '/customer', text: '订单', icon: 'solution'},
 	{key: 'storage', path: '/customer', text: '入库', icon: 'upload'},
-	{key: 'resource', path: '/customer', text: '物资', icon: 'pay-circle-o'},
+	{key: 'resource', path: '/resource', text: '物资', icon: 'pay-circle-o'},
 	{key: 'settlement', path: '/customer', text: '结算', icon: 'pushpin-o'},
 	{
 		key: 'bill', path: '/bill', text: '对账', icon: 'copy',
@@ -82,9 +84,5 @@ class SubTitle extends Component{
 		)
 	}
 }
-
-const NavLink = ({target, linkText}) => (
-	<Link to={target} className={styles.link}>{linkText}</Link>
-)
 
 export default Header

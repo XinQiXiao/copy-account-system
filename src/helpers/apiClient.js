@@ -34,7 +34,7 @@ class ApiClient {
 					...apiHeaderOptions,
 					body: JSON.stringify(data || {}),
 				}).then((response)=>{ 
-					console.log('response json before=>', response)
+					// console.log('response json before=>', response)
 					if(response.status >= 200 && response.status < 300){
 						return response.json()
 					}
