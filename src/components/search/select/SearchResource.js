@@ -22,8 +22,7 @@ class SearchSelect extends Component{
 		const {onSearchClick} = this.props
 		const {validateFields} = this.props.form
 		if(_.isFunction(onSearchClick)){
-			// TODO test
-			// e.preventDefault()
+			e.preventDefault()
 			validateFields((err, values)=>{
 				console.log('_onSubmit validateFields err=>', err, ' & values=>', values)
 				if(!!err)
@@ -39,7 +38,7 @@ class SearchSelect extends Component{
 		const { getFieldDecorator } = this.props.form
 		return (
 			<div className={styles.container}>
-				<Form layout='inline' onSubmit={this._onSubmit}>
+				<Form layout='inline' onSubmit={this._onSubmit} className={styles.formContainer}>
 					<FormItem label='商品名称：'>
 						{
 							getFieldDecorator('productId')(

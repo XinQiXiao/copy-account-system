@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react'
 import { connect } from 'dva'
+import { Button } from 'antd'
 
 // components
-import { BreadcrumbList } from '../../components'
+import { BreadcrumbList, SearchResource } from '../../components'
 
 // util
 import { webSessionUtil } from '../../utils'
@@ -11,15 +12,17 @@ import { webSessionUtil } from '../../utils'
 // style
 import styles from './index.css'
 
+const products = [
+	{_id: '001', productName: '冰箱'},
+	{_id: '002', productName: '电脑'}
+]
+
 class ResourceContainer extends Component{
 	constructor(props){
 		super(props)
 
 		this._searchClick = this._searchClick.bind(this)
-	}
-
-	_searchClick(){
-
+		this._settleClick = this._settleClick.bind(this)
 	}
 
 	UNSAFE_componentWillMount(){
@@ -27,6 +30,14 @@ class ResourceContainer extends Component{
 		if(!isLogin){
 			webSessionUtil.redirect()
 		}
+	}
+
+	_searchClick(values){
+		console.log('_searchClick values=>', values)
+	}
+
+	_settleClick(){
+
 	}
 
 	render(){
@@ -38,6 +49,10 @@ class ResourceContainer extends Component{
 			<div>
 				<BreadcrumbList breadcrumbItems={breadcrumbItems}/>
 				<div className={styles.search}>
+					<SearchResource onSearchClick={this._searchClick} products={products}/>
+					<div className={styles.settleBtn}>
+						<Button type='primary' onClick={this._settleClick}>结算</Button>
+					</div>
 				</div>
 			</div>
 		)

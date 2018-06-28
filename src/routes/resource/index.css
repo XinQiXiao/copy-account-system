@@ -1,10 +1,17 @@
 
 .search {
 	margin-bottom: 20px;
-	padding: 0 25px;
+	padding: 20px 25px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
 	align-items: center;
 	background: #fff;
+}
+
+.settleBtn {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: flex-end;
 }
