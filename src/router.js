@@ -14,7 +14,7 @@ export default function({history}){
 		<Router history={history}>
 			<Route path='/' component={HomePage}>
 				<IndexRoute component={IndexPage}/>
-				<Route path='/resource' onEnter={true ? null : webSessionUtil.requireAuth} component={ResourcePage}/>
+				<Route path='/resource' /*onEnter={webSessionUtil.requireAuth}*/ component={ResourcePage}/>
 
 				<Route path='/bill' component={BillPage}/>
 				<Route component={BillPage}>

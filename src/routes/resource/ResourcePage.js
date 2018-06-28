@@ -2,10 +2,25 @@
 import React, { Component } from 'react'
 import { connect } from 'dva'
 
+// components
+import { BreadcrumbList } from '../../components'
+
 // util
 import { webSessionUtil } from '../../utils'
 
+// style
+import styles from './index.css'
+
 class ResourceContainer extends Component{
+	constructor(props){
+		super(props)
+
+		this._searchClick = this._searchClick.bind(this)
+	}
+
+	_searchClick(){
+
+	}
 
 	UNSAFE_componentWillMount(){
 		const { isLogin } = this.props
@@ -15,21 +30,24 @@ class ResourceContainer extends Component{
 	}
 
 	render(){
-		const { isLogin } = this.props
-		if(!isLogin){
-			return null
-		}
+		const { breadcrumbItems, } = this.props
+		// if(!isLogin){
+		// 	return null
+		// }
 		return (
 			<div>
-				Resource
+				<BreadcrumbList breadcrumbItems={breadcrumbItems}/>
+				<div className={styles.search}>
+				</div>
 			</div>
 		)
 	}
 }
 
-function mapStateToProps({systemUser}){
+function mapStateToProps({systemUser, resource}){
 	return {
-		isLogin: systemUser.isLogin
+		isLogin: systemUser.isLogin,
+		breadcrumbItems: resource.breadcrumbItems,
 	}
 }
 

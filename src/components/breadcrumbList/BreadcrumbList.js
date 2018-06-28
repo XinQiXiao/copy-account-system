@@ -18,10 +18,10 @@ class BreadcrumbList extends Component{
 			<div className={styles.breadcrumb}>
 				<Breadcrumb>
 					{
-						breadcrumbItems.map(({target, linkText}, index)=>{
+						breadcrumbItems.map(({path, pathName}, index)=>{
 							return (
 								<BreadcrumbItem key={index}>
-									<NavLink target={target} linkText={linkText}/>
+									<NavLink target={path} linkText={pathName}/>
 								</BreadcrumbItem>
 							)
 						})

@@ -6,7 +6,7 @@ import { contantsConfig } from '../config'
 const { logupRequest, loginRequest, logoutRequest } = userPresenter
 const { STORAGE_USERINFO } = contantsConfig
 
-export default {
+const systemUserModel = {
 
 	namespace: 'systemUser',
 
@@ -148,3 +148,5 @@ export default {
 		}
 	}
 }
+
+export default systemUserModel
