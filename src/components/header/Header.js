@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { Menu, Icon } from 'antd'
 
 // components
-import NavLink from '../navLink/NavLink.js'
+import {NavLink} from '../common'
 
 // style
 import styles from './index.css'

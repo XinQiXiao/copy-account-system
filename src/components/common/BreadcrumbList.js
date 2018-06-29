@@ -3,10 +3,10 @@ import PropTypes from 'prop-types'
 import { Breadcrumb } from 'antd'
 
 // components
-import NavLink from '../navLink/NavLink'
+import NavLink from './NavLink'
 
 // styles
-import styles from './index.css'
+import styles from './common.css'
 
 // const
 const BreadcrumbItem = Breadcrumb.Item
