@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 // components
-import { StockList } from '../tableList'
+import { StockList } from '../list'
 
 // styles
 import styles from './stock.css'

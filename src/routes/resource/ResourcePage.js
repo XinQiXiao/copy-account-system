@@ -4,7 +4,7 @@ import { connect } from 'dva'
 import { Button } from 'antd'
 
 // components
-import { BreadcrumbList, SearchResource, StockComponents } from '../../components'
+import { BreadcrumbList, SearchResource, StockComponents, FundsComponents } from '../../components'
 
 // util
 import { webSessionUtil } from '../../utils'
@@ -55,6 +55,7 @@ class ResourceContainer extends Component{
 					</div>
 				</div>
 				<StockComponents />
+				<FundsComponents />
 			</div>
 		)
 	}

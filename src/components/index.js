@@ -8,6 +8,8 @@ import { SearchResource } from './search'
 
 // stock
 import StockComponents from './stock/Stock'
+// funds
+import FundsComponents from './funds/Funds'
 
 // list
 
@@ -19,5 +21,7 @@ export {
 	SearchResource,
 	// stock
 	StockComponents,
+	// funds
+	FundsComponents,
 	// list
 }
