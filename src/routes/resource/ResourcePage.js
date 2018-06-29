@@ -4,7 +4,7 @@ import { connect } from 'dva'
 import { Button } from 'antd'
 
 // components
-import { BreadcrumbList, SearchResource } from '../../components'
+import { BreadcrumbList, SearchResource, StockComponents } from '../../components'
 
 // util
 import { webSessionUtil } from '../../utils'
@@ -54,6 +54,7 @@ class ResourceContainer extends Component{
 						<Button type='primary' onClick={this._settleClick}>结算</Button>
 					</div>
 				</div>
+				<StockComponents />
 			</div>
 		)
 	}

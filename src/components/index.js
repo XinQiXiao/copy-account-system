@@ -6,10 +6,18 @@ import {BreadcrumbList} from './common'
 // search
 import { SearchResource } from './search'
 
+// stock
+import StockComponents from './stock/Stock'
+
+// list
+
 export {
 	Header,
 	SystemInfo,
 	BreadcrumbList,
 	// search
 	SearchResource,
+	// stock
+	StockComponents,
+	// list
 }
