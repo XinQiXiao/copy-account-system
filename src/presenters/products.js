@@ -1,13 +1,9 @@
-import { requestData } from '../modules' 
+import qs from 'qs'
+import { request } from '../helpers'
 
 // const 
 const PRODUCT_PATH = `/api/products`
 
-export async function getProducts(params){
-	try{
-		const ret = await requestData({path: PRODUCT_PATH, data: params})
-		return ret 
-	}catch(e){
-		throw e
-	}
+export async function query(params){
+	return request(`${PRODUCT_PATH}?${qs.stringify(params)}`)
 }

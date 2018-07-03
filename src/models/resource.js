@@ -35,8 +35,7 @@ const resourceModel = {
 				const isLogin = yield select(({systemUser})=> systemUser.isLogin)
 				if(!isLogin)
 					return
-				const ret = yield call(productsPresenter.getProducts, {})
-				console.log('queryProducts ret=>', ret)
+				const ret = yield call(productsPresenter.query, {})
 				const {data} = ret  
 				if(data && data.success){
 					yield put({
