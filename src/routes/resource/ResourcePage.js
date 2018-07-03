@@ -41,10 +41,10 @@ class ResourceContainer extends Component{
 	}
 
 	render(){
-		const { breadcrumbItems, } = this.props
-		// if(!isLogin){
-		// 	return null
-		// }
+		const { breadcrumbItems, isLogin, } = this.props
+		if(!isLogin){
+			return null
+		}
 		return (
 			<div>
 				<BreadcrumbList breadcrumbItems={breadcrumbItems}/>

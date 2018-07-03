@@ -22,11 +22,11 @@ const systemUserModel = {
 	subscriptions: {
 		setup({dispatch, history}){
 			history.listen(location => {
-				console.log('subscriptions location==>', location)
+				// console.log('subscriptions location==>', location)
 				if(location.pathname === '/'){
 					// 权限验证通过
 					const info = sessionStorage.getItem(STORAGE_USERINFO)
-					console.log('systemUser Model subscriptions session userInfo=>', info)
+					// console.log('systemUser Model subscriptions session userInfo=>', info)
 					if(!_.isNil(info)){
 						dispatch({
 							type: 'loginSuccess',

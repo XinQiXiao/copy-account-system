@@ -1,5 +1,5 @@
 import { requestData} from './request'
 
 export {
-	requestData
+	requestData,
 }

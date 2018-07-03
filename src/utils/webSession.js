@@ -13,7 +13,7 @@ function redirect(){
 // 授权验证
 function requireAuth(nextState, replace){
 	const userInfo = sessionStorage.getItem(contantsConfig.STORAGE_USERINFO)
-	console.log('requireAuth userInfo=>', userInfo)
+	// console.log('requireAuth userInfo=>', userInfo)
 	if(_.isNil(userInfo)){
 		message.error('请登录！')
 		replace('/')
